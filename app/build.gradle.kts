@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -40,6 +43,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation ("androidx.fragment:fragment-ktx:1.3.6")
     implementation ("com.google.android.material:material:1.5.0")
+    implementation ("androidx.databinding:databinding-runtime:7.0.2")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

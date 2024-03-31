@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".LetterChooseFragment">
 
     <GridLayout
         android:id="@+id/gridLayout"
@@ -31,7 +32,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="A"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -42,7 +43,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="B"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -53,7 +54,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="C"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -64,7 +65,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="D"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <!-- Row 2 -->
@@ -76,7 +77,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="E"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -87,7 +88,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="F"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -98,7 +99,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="G"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -109,7 +110,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="H"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <!-- Row 3 -->
@@ -121,7 +122,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="I"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -132,7 +133,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="J"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -143,7 +144,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="K"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -154,7 +155,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="L"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <!-- Row 4 -->
@@ -166,7 +167,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="M"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -177,7 +178,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="N"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -188,7 +189,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="O"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
         <com.google.android.material.button.MaterialButton
@@ -199,7 +200,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:text="P"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialButton.square" />
 
     </GridLayout>

@@ -29,6 +29,7 @@ class LetterChooseFragment: Fragment() {
     ): View? {
         _binding = FragmentLetterChooseBinding.inflate(inflater, container, false)
         word = ""
+        updateWord(word)
         buttonIds = arrayOf(
             binding.button0, binding.button1, binding.button2, binding.button3,
             binding.button4, binding.button5, binding.button6, binding.button7,
@@ -55,6 +56,7 @@ class LetterChooseFragment: Fragment() {
             word += button.text
             button.setBackgroundColor(Color.parseColor("#c6cfc8"))
             button.isEnabled = false
+            updateWord(word)
         } else {
             val lastClicked = clicked.last()
             val lastRow = lastClicked.div(4)
@@ -70,23 +72,29 @@ class LetterChooseFragment: Fragment() {
                 word += button.text
                 button.setBackgroundColor(Color.parseColor("#c6cfc8"))
                 button.isEnabled = false
+                updateWord(word)
             } else if (abs(colDistance) == 1 && abs(rowDistance) == 1) {
                 clicked += number
                 word += button.text
                 button.setBackgroundColor(Color.parseColor("#c6cfc8"))
                 button.isEnabled = false
+                updateWord(word)
             } else {
                 Toast.makeText(context, "Cannot use non-adjacent letter", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    private fun updateWord(word: String) {
+        binding.wordDisplay.text = word
+    }
+
     private fun generateBoard(): List<Char> {
         val vowels = listOf('A', 'E', 'I', 'O', 'U')
         val consonants = ('A'..'Z').filter { it !in vowels }
         val random = java.util.Random()
-        val vowelLetters = (2..5).map { vowels[random.nextInt(vowels.size)] }
-        val consonantLetters = (1..14).map { consonants[random.nextInt(consonants.size)] }
+        val vowelLetters = (2..8).map { vowels[random.nextInt(vowels.size)] }
+        val consonantLetters = (1..vowelLetters.size).map { consonants[random.nextInt(consonants.size)] }
         return (vowelLetters + consonantLetters).shuffled(random)
     }
 
@@ -100,9 +108,6 @@ class LetterChooseFragment: Fragment() {
         }
     }
 
-    private fun canClick() {
-        //check for adjacency and previously clicked letters?
-    }
     private fun resetBoard() {
         buttonIds.forEach { button ->
             button.isEnabled = true
@@ -110,17 +115,13 @@ class LetterChooseFragment: Fragment() {
         }
         clicked = intArrayOf()
         word = ""
+        updateWord(word)
     }
 
     private fun submit(word: String) {
-        //if it is a word, get the score
-        val score = letterScore(word)
-        //else
-
+        //send the word to other fragment
     }
-    private fun letterScore(word: String) {
 
-    }
 
 
 }

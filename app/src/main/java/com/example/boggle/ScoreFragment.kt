@@ -23,4 +23,8 @@ class ScoreFragment: Fragment() {
 
         return binding.root
     }
+
+    private fun letterScore(word: String) {
+
+    }
 }

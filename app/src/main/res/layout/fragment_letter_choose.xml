@@ -10,8 +10,8 @@
 
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="293dp"
-        android:layout_height="293dp"
+        android:layout_width="329dp"
+        android:layout_height="343dp"
         android:alignmentMode="alignMargins"
         android:columnCount="4"
         android:columnOrderPreserved="false"
@@ -207,6 +207,7 @@
 
     <TextView
         android:layout_width="wrap_content"
+        android:id="@+id/wordDisplay"
         android:layout_height="wrap_content"
         android:layout_marginStart="144dp"
         android:layout_marginTop="16dp"
@@ -222,6 +223,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
+        android:backgroundTint="#42474f"
         android:id="@+id/clearButton"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -234,6 +236,8 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/submitButton"
+        android:backgroundTint="#42474f"
         android:layout_marginStart="228dp"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="40dp"

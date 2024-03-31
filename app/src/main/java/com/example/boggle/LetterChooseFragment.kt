@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.boggle.databinding.FragmentLetterChooseBinding
+import com.google.android.material.button.MaterialButton
 
 class LetterChooseFragment: Fragment() {
     private var _binding: FragmentLetterChooseBinding? = null
@@ -20,8 +22,25 @@ class LetterChooseFragment: Fragment() {
     ): View? {
         _binding = FragmentLetterChooseBinding.inflate(inflater, container, false)
         newBoard()
+        val buttonIds = arrayOf(
+            binding.button0, binding.button1, binding.button2, binding.button3,
+            binding.button4, binding.button5, binding.button6, binding.button7,
+            binding.button8, binding.button9, binding.button10, binding.button11,
+            binding.button12, binding.button13, binding.button14, binding.button15,
+        )
+        for (button in buttonIds) {
+            button.setOnClickListener {
+                onClick(button.id)
+            }
+        }
         return binding.root
     }
+
+    private fun onClick(buttonId: Int) {
+
+        Toast.makeText(this, "Button with ID $binding.buttonId.text clicked", Toast.LENGTH_SHORT).show()
+    }
+
     private fun generateBoard(): List<Char> {
         val vowels = listOf('A', 'E', 'I', 'O', 'U')
         val consonants = ('A'..'Z').filter { it !in vowels }

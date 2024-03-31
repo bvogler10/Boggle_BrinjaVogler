@@ -222,6 +222,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
+        android:id="@+id/clearButton"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="72dp"

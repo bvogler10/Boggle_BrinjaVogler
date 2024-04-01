@@ -9,6 +9,11 @@ import com.example.boggle.databinding.FragmentScoreBinding
 
 
 class ScoreFragment: Fragment() {
+    interface ScoreFragmentListener{
+        fun newGame()
+    }
+    private var listener: ScoreFragment.ScoreFragmentListener? = null
+
     private var _binding: FragmentScoreBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -19,12 +24,17 @@ class ScoreFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentScoreBinding.inflate(inflater, container, false)
+        binding.newGame.setOnClickListener {
 
+        }
 
         return binding.root
     }
 
     private fun letterScore(word: String) {
 
+    }
+    private fun newGame() {
+        listener?.newGame()
     }
 }

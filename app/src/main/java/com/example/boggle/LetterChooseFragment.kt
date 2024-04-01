@@ -9,10 +9,13 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.boggle.databinding.FragmentLetterChooseBinding
-import com.google.android.material.button.MaterialButton
 import kotlin.math.abs
 
 class LetterChooseFragment: Fragment() {
+    interface LetterChooseFragmentListener{
+        fun submit(word: CharSequence)
+    }
+    private var listener: LetterChooseFragment.LetterChooseFragmentListener? = null
     private var _binding: FragmentLetterChooseBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -94,7 +97,7 @@ class LetterChooseFragment: Fragment() {
         val consonants = ('A'..'Z').filter { it !in vowels }
         val random = java.util.Random()
         val vowelLetters = (2..8).map { vowels[random.nextInt(vowels.size)] }
-        val consonantLetters = (1..vowelLetters.size).map { consonants[random.nextInt(consonants.size)] }
+        val consonantLetters = (1..(16 - vowelLetters.size)).map { consonants[random.nextInt(consonants.size)] }
         return (vowelLetters + consonantLetters).shuffled(random)
     }
 
@@ -118,10 +121,8 @@ class LetterChooseFragment: Fragment() {
         updateWord(word)
     }
 
-    private fun submit(word: String) {
-        //send the word to other fragment
+    private fun submit(text: String) {
+        listener?.submit(text)
+        resetBoard()
     }
-
-
-
 }

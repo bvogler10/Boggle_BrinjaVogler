@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,11 +9,29 @@
     tools:context=".ScoreFragment">
 
     <TextView
-        android:id="@+id/textViewFragmentB"
-        android:layout_width="match_parent"
+        android:id="@+id/scoreLabel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fragment A"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Score:"
         android:textSize="24sp"
-        android:gravity="center"/>
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
-</LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="135dp"
+        android:id="@+id/newGame"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="135dp"
+        android:backgroundTint="#42474f"
+        android:text="NEW GAME"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </com.google.android.material.button.MaterialButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

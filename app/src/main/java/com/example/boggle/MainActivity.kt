@@ -17,5 +17,7 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainerScore, fragmentB)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
+
+
     }
 }

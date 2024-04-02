@@ -31,6 +31,7 @@ class ScoreFragment: Fragment() {
         binding.newGame.setOnClickListener {
             binding.score.text = "0"
             listener?.newGameClicked()
+            curScore = 0
         }
         return binding.root
     }

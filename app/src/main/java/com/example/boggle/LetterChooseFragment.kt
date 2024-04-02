@@ -57,14 +57,18 @@ class LetterChooseFragment: Fragment() {
             resetBoard()
         }
         binding.submitButton.setOnClickListener{
-            val score = letterScore(word)
-            if (score == -10) {
-                Toast.makeText(context, "Incorrect, -$score", Toast.LENGTH_SHORT).show()
+            if (word.length == 0) {
+                Toast.makeText(context, "Please guess a word", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Correct, +$score", Toast.LENGTH_SHORT).show()
+                val score = letterScore(word)
+                if (score == -10) {
+                    Toast.makeText(context, "Incorrect, -$score", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Correct, +$score", Toast.LENGTH_SHORT).show()
+                }
+                listener?.updateScore(score)
+                resetBoard()
             }
-            listener?.updateScore(score)
-            resetBoard()
         }
         return binding.root
     }
@@ -157,6 +161,7 @@ class LetterChooseFragment: Fragment() {
         Log.d("FRAGMENT_COMM", "newGame clicked")
         newBoard()
         resetBoard()
+        wordList.clear()
     }
 
     private fun loadDictionary() {
@@ -194,13 +199,11 @@ class LetterChooseFragment: Fragment() {
                 }
             }
         }
-
-        if (isValidWord(word, vowelCount, word.length)) {
-            if (hasSpecialConsonant) {
-                score *= 2
-            }
-        } else {
-            score = -10
+        if (hasSpecialConsonant) {
+            score *= 2
+        }
+        if (!isValidWord(word, vowelCount, word.length)) {
+           score = -10
         }
         return score
     }

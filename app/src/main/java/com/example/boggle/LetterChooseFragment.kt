@@ -17,7 +17,7 @@ class LetterChooseFragment: Fragment() {
     interface LetterChooseFragmentListener{
         fun submitWord(word: CharSequence)
     }
-    var listener: LetterChooseFragmentListener? = null
+    private var listener: LetterChooseFragmentListener? = null
     private var _binding: FragmentLetterChooseBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -58,6 +58,11 @@ class LetterChooseFragment: Fragment() {
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        if (context is LetterChooseFragmentListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement NewGameListener")
+        }
         Log.d("FragmentLifecycle", "LetterChooseFragment attached")
     }
 

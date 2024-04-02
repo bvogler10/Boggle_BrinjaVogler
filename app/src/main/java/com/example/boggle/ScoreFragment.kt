@@ -14,7 +14,7 @@ class ScoreFragment: Fragment() {
     interface ScoreFragmentListener{
         fun newGameClicked()
     }
-    var listener: ScoreFragmentListener? = null
+    private var listener: ScoreFragmentListener? = null
 
     private var _binding: FragmentScoreBinding? = null
     private val binding
@@ -27,6 +27,7 @@ class ScoreFragment: Fragment() {
     ): View? {
         _binding = FragmentScoreBinding.inflate(inflater, container, false)
         binding.newGame.setOnClickListener {
+            binding.score.text = "0"
             listener?.newGameClicked()
         }
         return binding.root
@@ -38,6 +39,11 @@ class ScoreFragment: Fragment() {
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        if (context is ScoreFragmentListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement NewGameListener")
+        }
         Log.d("FragmentLifecycle", "ScoreFragment attached")
     }
 

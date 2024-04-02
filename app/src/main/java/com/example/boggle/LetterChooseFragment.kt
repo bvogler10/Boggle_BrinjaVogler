@@ -11,14 +11,18 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.boggle.databinding.FragmentLetterChooseBinding
+import java.io.IOException
+import java.util.Locale
 import kotlin.math.abs
 
 class LetterChooseFragment: Fragment() {
     interface LetterChooseFragmentListener{
-        fun submitWord(word: CharSequence)
+        fun updateScore(score: Int)
     }
     private var listener: LetterChooseFragmentListener? = null
     private var _binding: FragmentLetterChooseBinding? = null
+    private var dictionary = HashSet<String>()
+
     private val binding
         get() = checkNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible?"
@@ -27,6 +31,7 @@ class LetterChooseFragment: Fragment() {
     private var clicked = intArrayOf()
     private lateinit var word: String
     private var buttonIds = arrayOf<Button>()
+    private val wordList = HashSet<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +47,7 @@ class LetterChooseFragment: Fragment() {
             binding.button12, binding.button13, binding.button14, binding.button15,
         )
         newBoard()
+        loadDictionary()
         for (button in buttonIds) {
             button.setOnClickListener {
                 onLetterClick(button)
@@ -51,7 +57,13 @@ class LetterChooseFragment: Fragment() {
             resetBoard()
         }
         binding.submitButton.setOnClickListener{
-            listener?.submitWord(binding.wordDisplay.text)
+            val score = letterScore(word)
+            if (score == -10) {
+                Toast.makeText(context, "Incorrect, -$score", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Correct, +$score", Toast.LENGTH_SHORT).show()
+            }
+            listener?.updateScore(score)
             resetBoard()
         }
         return binding.root
@@ -76,6 +88,7 @@ class LetterChooseFragment: Fragment() {
         if (clicked.isEmpty()) {
             clicked += number
             word += button.text
+
             button.setBackgroundColor(Color.parseColor("#c6cfc8"))
             button.isEnabled = false
             updateWord(word)
@@ -146,4 +159,62 @@ class LetterChooseFragment: Fragment() {
         resetBoard()
     }
 
+    private fun loadDictionary() {
+        try {
+            val inputStream = resources.assets.open("dictionary.txt")  // Access the dictionary.txt file from the assets folder
+            inputStream.bufferedReader().useLines { lines ->
+                lines.forEach { line ->
+                    dictionary.add(line.trim().toUpperCase(Locale.ROOT))  // Add each word from the dictionary file to the HashSet
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+    fun letterScore(word: CharSequence): Int {
+        Log.d("FRAGMENT_COMM", "submit clicked")
+        var score = 0
+        var vowelCount = 0
+        var consonantCount = 0
+        var hasSpecialConsonant = false
+        for (char in word) {
+            when (char.uppercaseChar()) {
+                'A', 'E', 'I', 'O', 'U' -> {
+                    score += 5
+                    vowelCount++
+                }
+                'S', 'Z', 'P', 'X', 'Q' -> {
+                    score++
+                    consonantCount++
+                    hasSpecialConsonant = true
+                }
+                else -> {
+                    score++
+                    consonantCount++
+                }
+            }
+        }
+
+        if (isValidWord(word, vowelCount, word.length)) {
+            if (hasSpecialConsonant) {
+                score *= 2
+            }
+        } else {
+            score = -10
+        }
+        return score
+    }
+    fun isValidWord(word: CharSequence, vowelCount: Int, length: Int): Boolean {
+        if (vowelCount < 2 || length < 4 || !dictionary.contains(word)) {
+            return false
+        } else {
+            if (wordList.contains(word.toString())) {
+                Toast.makeText(context, "Already guessed, -10", Toast.LENGTH_SHORT).show()
+                return false
+            } else {
+                wordList.add(word.toString())
+                return true
+            }
+        }
+    }
 }

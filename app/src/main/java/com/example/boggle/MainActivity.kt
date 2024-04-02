@@ -18,9 +18,9 @@ class MainActivity : AppCompatActivity(), LetterChooseFragment.LetterChooseFragm
         val letterChooseFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerLetterChoose) as LetterChooseFragment?
         letterChooseFragment?.newGame()
     }
-    override fun submitWord(word: CharSequence) {
+    override fun updateScore(score: Int) {
         Log.d("INTERFACE", "Submit in MainActivity called")
         val scoreFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerScore) as ScoreFragment?
-        scoreFragment?.letterScore(word)
+        scoreFragment?.updateScore(score)
     }
 }

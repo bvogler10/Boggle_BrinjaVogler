@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import com.example.boggle.databinding.FragmentScoreBinding
 
 
+
 class ScoreFragment: Fragment() {
     interface ScoreFragmentListener{
         fun newGameClicked()
     }
     private var listener: ScoreFragmentListener? = null
+    private var curScore = 0
 
     private var _binding: FragmentScoreBinding? = null
     private val binding
@@ -33,10 +35,12 @@ class ScoreFragment: Fragment() {
         return binding.root
     }
 
-    fun letterScore(word: CharSequence) {
-        Log.d("FRAGMENT_COMM", "submit clicked")
-        binding.score.text = "1000"
+
+    fun updateScore(score: Int) {
+        curScore += score
+        binding.score.text = curScore.toString()
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is ScoreFragmentListener) {

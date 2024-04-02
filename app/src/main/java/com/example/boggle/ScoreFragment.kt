@@ -1,6 +1,8 @@
 package com.example.boggle
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +12,9 @@ import com.example.boggle.databinding.FragmentScoreBinding
 
 class ScoreFragment: Fragment() {
     interface ScoreFragmentListener{
-        fun newGame()
+        fun newGameClicked()
     }
-    private var listener: ScoreFragment.ScoreFragmentListener? = null
+    var listener: ScoreFragmentListener? = null
 
     private var _binding: FragmentScoreBinding? = null
     private val binding
@@ -25,16 +27,22 @@ class ScoreFragment: Fragment() {
     ): View? {
         _binding = FragmentScoreBinding.inflate(inflater, container, false)
         binding.newGame.setOnClickListener {
-
+            listener?.newGameClicked()
         }
-
         return binding.root
     }
 
-    private fun letterScore(word: String) {
-
+    fun letterScore(word: CharSequence) {
+        Log.d("FRAGMENT_COMM", "submit clicked")
+        binding.score.text = "1000"
     }
-    private fun newGame() {
-        listener?.newGame()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("FragmentLifecycle", "ScoreFragment attached")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("FragmentLifecycle", "ScoreFragment detached")
     }
 }

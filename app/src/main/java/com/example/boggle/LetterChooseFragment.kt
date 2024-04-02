@@ -1,7 +1,9 @@
 package com.example.boggle
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +15,9 @@ import kotlin.math.abs
 
 class LetterChooseFragment: Fragment() {
     interface LetterChooseFragmentListener{
-        fun submit(word: CharSequence)
+        fun submitWord(word: CharSequence)
     }
-    private var listener: LetterChooseFragment.LetterChooseFragmentListener? = null
+    var listener: LetterChooseFragmentListener? = null
     private var _binding: FragmentLetterChooseBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -48,9 +50,21 @@ class LetterChooseFragment: Fragment() {
         binding.clearButton.setOnClickListener{
             resetBoard()
         }
+        binding.submitButton.setOnClickListener{
+            listener?.submitWord(binding.wordDisplay.text)
+            resetBoard()
+        }
         return binding.root
     }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("FragmentLifecycle", "LetterChooseFragment attached")
+    }
 
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("FragmentLifecycle", "LetterChooseFragment detached")
+    }
     private fun onLetterClick(button: Button) {
         val buttonName = resources.getResourceEntryName(button.id)!!
         val number = buttonName.substring(6).toInt()
@@ -121,8 +135,10 @@ class LetterChooseFragment: Fragment() {
         updateWord(word)
     }
 
-    private fun submit(text: String) {
-        listener?.submit(text)
+    fun newGame() {
+        Log.d("FRAGMENT_COMM", "newGame clicked")
+        newBoard()
         resetBoard()
     }
+
 }

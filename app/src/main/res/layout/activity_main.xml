@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerLetterChoose"
+        android:name="com.example.boggle.LetterChooseFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/fragmentContainerScore"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerScore"
+        android:name="com.example.boggle.ScoreFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

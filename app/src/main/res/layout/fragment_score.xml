@@ -20,6 +20,20 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="88dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="22dp"
+        android:text="0"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/newGame"
+        app:layout_constraintStart_toEndOf="@+id/scoreLabel"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
